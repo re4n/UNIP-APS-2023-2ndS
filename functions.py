@@ -1,6 +1,8 @@
 import random
 import string
 
+
+
 def gen_string_key(tamanho):
     caracteres = string.ascii_letters + string.digits
     return ''.join(random.choice(caracteres) for _ in range(tamanho)) #? Retorna uma string aleatória com o tamanho do texto a ser cifrado
