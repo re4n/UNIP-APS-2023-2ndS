@@ -1,20 +1,32 @@
 import random
 import string
-
-def gen_string_key(tamanho):
-    caracteres = string.ascii_letters + string.digits
-    return ''.join(random.choice(caracteres) for _ in range(tamanho)) #? Retorna uma string aleatória com o tamanho do texto a ser cifrado
+import time
+import sys
 
 
-def convert_bin(texto):
-    binario = ""
-    for i in texto:
-        valor_decimal = ord(i)
-        valor_binario = bin(valor_decimal)[2:]
-        valor_binario = valor_binario.zfill(8)
-        binario += valor_binario
+def loading_animation():
+    
+    chars = "/-\|"
+    for i in range(20):
+        sys.stdout.write('\r')
+        sys.stdout.write(f'Carregando... {chars[i % len(chars)]}')
+        sys.stdout.flush()
+        time.sleep(0.1)
 
-    return binario #? Retorna o texto em binário
+def gen_string_key(length):
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choice(characters) for _ in range(length)) #? Retorna uma string aleatória com o tamanho do texto a ser cifrado
+
+
+def convert_bin(text):
+    binary = ""
+    for i in text:
+        decimal_value = ord(i)
+        bin_value = bin(decimal_value)[2:]
+        bin_value = decimal_value.zfill(8)
+        binary += bin_value
+
+    return binary #? Retorna o texto em binário
 
 def gen_ciphertext_bin(bin_text, bin_key):
     bin_ciphertext = ""
@@ -28,11 +40,11 @@ def gen_ciphertext_bin(bin_text, bin_key):
     return bin_ciphertext #? Retorna o texto cifrado em binário
 
 
-def binario_para_string(binario):
-    bytes_list = [binario[i:i+8] for i in range(0, len(binario), 8)]
-    caracteres = [chr(int(byte, 2)) for byte in bytes_list]
+def bin_to_string(binary):
+    bytes_list = [binary[i:i+8] for i in range(0, len(binary), 8)]
+    chars = [chr(int(byte, 2)) for byte in bytes_list]
 
-    return ''.join(caracteres) #? Retorna o texto cifrado em string
+    return ''.join(chars) #? Retorna o texto cifrado em string
 
 
 
