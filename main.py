@@ -1,9 +1,12 @@
 import functions
 
 print("\t -==Criptografia==-\n")
+# Entrada do texto para ser criptografado
 texto = input("Digite o texto: ")
 try:
+    # Entrada da chave
     texto_chave = input("Digite a chave: ")
+
     while True:
         if " " in texto_chave:
             # ? Retira os espaços da string
@@ -19,6 +22,7 @@ try:
         else:
             break
 except:
+    # ? Caso a chave não for digitada corretamente
     print("Erro ao digitar a chave")
     exit()
 
