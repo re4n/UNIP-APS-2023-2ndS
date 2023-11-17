@@ -1,8 +1,24 @@
 import functions
 
 print("\t -==Criptografia==-\n")
+
 # Entrada do texto para ser criptografado
-texto = input("Digite o texto: ")
+try:
+    texto = input("Digite um texto: ")
+
+    if len(texto) > 128:
+        raise NameError("String longer than 128 characters")
+
+except NameError:
+    raise
+
+try:
+    # ? Caso o texto for uma string vazia
+    if len(texto) == 0:
+        raise NameError("Empty String")
+except NameError:
+    raise
+
 try:
     # Entrada da chave
     texto_chave = input("Digite a chave: ")
@@ -18,7 +34,14 @@ try:
         elif len(texto_chave) > len(texto):
             # ? Caso a chave for maior que o texto, retira os caracteres excedentes da chave
             texto_chave = texto_chave[:len(texto)]
-        
+
+        try:
+            # ? Caso a chave for uma string vazia
+            if len(texto_chave) == 0:
+                raise NameError("Empty Key")
+        except NameError:
+            raise
+
         else:
             break
 except:
@@ -26,7 +49,7 @@ except:
     print("Erro ao digitar a chave")
     exit()
 
- # Convertendo o texto e a chave para binário
+# Convertendo o texto e a chave para binário
 texto_bin = functions.convert_bin(texto)
 texto_chave_bin = functions.convert_bin(texto_chave)
 
@@ -50,4 +73,3 @@ print("\nTexto descriptografado: ", descriptografado)
 
 print("\n\n")
 print("\tFIM DO PROGRAMA")
-
