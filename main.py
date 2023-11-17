@@ -24,6 +24,13 @@ try:
     texto_chave = input("Digite a chave: ")
 
     while True:
+        try:
+            # ? Caso a chave for uma string vazia
+            if len(texto_chave) == 0:
+                raise NameError("Empty Key")
+        except NameError:
+            raise
+
         if " " in texto_chave:
             # ? Retira os espaços da string
             texto_chave = texto_chave.replace(" ", "")
@@ -35,19 +42,11 @@ try:
             # ? Caso a chave for maior que o texto, retira os caracteres excedentes da chave
             texto_chave = texto_chave[:len(texto)]
 
-        try:
-            # ? Caso a chave for uma string vazia
-            if len(texto_chave) == 0:
-                raise NameError("Empty Key")
-        except NameError:
-            raise
 
         else:
             break
 except:
-    # ? Caso a chave não for digitada corretamente
-    print("Erro ao digitar a chave")
-    exit()
+    raise
 
 # Convertendo o texto e a chave para binário
 texto_bin = functions.convert_bin(texto)
